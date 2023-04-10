@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="com.baydot721.lectordearchivos.LectorCSVTest" time="0.031" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.baydot721.lectordearchivos.LectorCSVTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="19.0.2+7-44"/>
@@ -46,7 +46,7 @@
     <property name="java.class.path" value="C:\Program Files\NetBeans-17\netbeans\java\maven\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="19"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans-17\netbeans\java\maven-nblib\netbeans-eventspy.jar --no-transfer-progress install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans-17\netbeans\java\maven-nblib\netbeans-eventspy.jar --no-transfer-progress clean install"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-19"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -62,10 +62,10 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetContenidoEstructuraDatosValida" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetStringSinArchivo" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testLeerArchivoCorrecto" time="0"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetContenidoEstructuraDatosValida" time="0.003"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetStringSinArchivo" time="0.001"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testLeerArchivoCorrecto" time="0.001"/>
   <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetEstructuraDatosSinArchivo" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetStringConArchivo" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testLeerArchivoIncorrecto" time="0.031"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testGetStringConArchivo" time="0.002"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorCSVTest" name="testLeerArchivoIncorrecto" time="0.001"/>
 </testsuite>
