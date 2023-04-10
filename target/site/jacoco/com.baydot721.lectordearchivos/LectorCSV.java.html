@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LectorCSV.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LectorDeArchivos</a> &gt; <a href="index.source.html" class="el_package">com.baydot721.lectordearchivos</a> &gt; <span class="el_source">LectorCSV.java</span></div><h1>LectorCSV.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.baydot721.lectordearchivos;
+
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import com.opencsv.CSVReader;
+import java.lang.reflect.Field;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Ale
+ */
+public class LectorCSV extends Lector {
+
+    public LectorCSV() {
+<span class="fc" id="L22">        super();</span>
+<span class="fc" id="L23">    }</span>
+
+    @Override
+    public &lt;T&gt; List&lt;T&gt; getContenidoEstructuraDatos(Class&lt;T&gt; clazz) throws LectorArchivosDeDatosException {
+<span class="fc" id="L27">        List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L29">            StringReader stringReader = new StringReader(contenidoEnString);</span>
+<span class="fc" id="L30">            CSVReader reader = new CSVReader(stringReader);</span>
+
+            // Leer los encabezados de las columnas del CSV
+<span class="fc" id="L33">            String[] headers = reader.readNext();</span>
+
+            // Leer cada fila del CSV y crear un objeto del tipo especificado
+            String[] nextLine;
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            while ((nextLine = reader.readNext()) != null) {</span>
+<span class="fc" id="L38">                T obj = clazz.getDeclaredConstructor().newInstance();</span>
+
+                // Asignar valores a las variables del objeto
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                for (int i = 0; i &lt; headers.length; i++) {</span>
+<span class="fc" id="L42">                    String header = headers[i];</span>
+<span class="fc" id="L43">                    String value = nextLine[i];</span>
+<span class="fc" id="L44">                    Field field = clazz.getDeclaredField(header);</span>
+<span class="fc" id="L45">                    field.setAccessible(true);</span>
+
+                    // Convertir el valor a su tipo correspondiente
+                    Object convertedValue;
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                    if (field.getType() == int.class) {</span>
+<span class="fc" id="L50">                        convertedValue = Integer.valueOf(value);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                    } else if (field.getType() == double.class) {</span>
+<span class="fc" id="L52">                        convertedValue = Double.valueOf(value);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">                    } else if (field.getType() == boolean.class) {</span>
+<span class="fc" id="L54">                        convertedValue = Boolean.valueOf(value);</span>
+                    } else {
+<span class="fc" id="L56">                        convertedValue = value;</span>
+                    }
+<span class="fc" id="L58">                    field.set(obj, convertedValue);</span>
+                }
+<span class="fc" id="L60">                result.add(obj);</span>
+<span class="fc" id="L61">            }</span>
+<span class="fc" id="L62">            return result;</span>
+<span class="nc" id="L63">        } catch (Exception ex) {</span>
+<span class="nc" id="L64">            Logger.getLogger(LectorCSV.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L65">            throw new LectorArchivosDeDatosException(LectorArchivosDeDatosException.ErrorCode.FORMATO_DE_CONTENIDO_INCORRECTO);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

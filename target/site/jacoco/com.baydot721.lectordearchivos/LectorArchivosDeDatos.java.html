@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LectorArchivosDeDatos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LectorDeArchivos</a> &gt; <a href="index.source.html" class="el_package">com.baydot721.lectordearchivos</a> &gt; <span class="el_source">LectorArchivosDeDatos.java</span></div><h1>LectorArchivosDeDatos.java</h1><pre class="source lang-java linenums">package com.baydot721.lectordearchivos;
+
+import com.baydot721.lectordearchivos.LectorArchivosDeDatosException.ErrorCode;
+import java.util.ArrayList;
+import java.util.List;
+
+public class LectorArchivosDeDatos {
+
+<span class="fc" id="L9">    private String rutaArchivo = &quot;&quot;;</span>
+    private Extension extension;
+
+<span class="fc" id="L12">    public LectorArchivosDeDatos() {</span>
+<span class="fc" id="L13">    }</span>
+
+    void setRutaArchivo(String rutaArchivo) throws LectorArchivosDeDatosException {
+<span class="fc" id="L16">        validarNulosYVacios(rutaArchivo);</span>
+<span class="fc" id="L17">        this.rutaArchivo = rutaArchivo;</span>
+<span class="fc" id="L18">        validarExtension();</span>
+<span class="fc" id="L19">    }</span>
+
+    private void validarNulosYVacios(String rutaArchivo) throws LectorArchivosDeDatosException {
+<span class="fc bfc" id="L22" title="All 4 branches covered.">        if (rutaArchivo == null || rutaArchivo.equals(&quot;&quot;)) {</span>
+<span class="fc" id="L23">            throw new LectorArchivosDeDatosException(ErrorCode.RUTA_ARCHIVO_NULA_VACIA);</span>
+        }
+
+<span class="fc" id="L26">    }</span>
+
+    private void validarExtension() throws LectorArchivosDeDatosException {
+<span class="fc" id="L29">        int posicionPunto = rutaArchivo.lastIndexOf(&quot;.&quot;);</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (seEncontroPunto(posicionPunto)) {</span>
+<span class="fc" id="L31">            buscarExtension(posicionPunto);</span>
+        } else {
+<span class="nc" id="L33">            noSeEncontroExtension();</span>
+        }
+<span class="fc" id="L35">    }</span>
+
+    private boolean seEncontroPunto(int posicionPunto) {
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        return posicionPunto &gt; 0 &amp;&amp; posicionPunto &lt; rutaArchivo.length() - 1;</span>
+    }
+
+    private void buscarExtension(int posicionPunto) throws LectorArchivosDeDatosException {
+<span class="fc" id="L42">        String extensionEncontrada = rutaArchivo.substring(posicionPunto + 1);</span>
+<span class="fc" id="L43">        String extensionEncontradaMinusculas = extensionEncontrada.toLowerCase();</span>
+<span class="fc bfc" id="L44" title="All 4 branches covered.">        switch (extensionEncontradaMinusculas) {</span>
+            case &quot;json&quot;:
+<span class="fc" id="L46">                extension = Extension.JSON;</span>
+<span class="fc" id="L47">                break;</span>
+            case &quot;csv&quot;:
+<span class="fc" id="L49">                extension = Extension.CSV;</span>
+<span class="fc" id="L50">                break;</span>
+            case &quot;xml&quot;:
+<span class="fc" id="L52">                extension = Extension.XML;</span>
+<span class="fc" id="L53">                break;</span>
+            default:
+<span class="fc" id="L55">                throw new LectorArchivosDeDatosException(ErrorCode.EXTENSION_NO_VALIDA);</span>
+        }
+<span class="fc" id="L57">    }</span>
+
+    private void noSeEncontroExtension() throws LectorArchivosDeDatosException {
+<span class="fc" id="L60">        throw new LectorArchivosDeDatosException(ErrorCode.EXTENSION_NO_ENCONTRADA);</span>
+    }
+
+    public String getRutaArchivo() {
+<span class="fc" id="L64">        return rutaArchivo;</span>
+    }
+
+    public Extension getExtension() {
+<span class="fc" id="L68">        return this.extension;</span>
+    }
+
+    public &lt;T&gt; List&lt;T&gt; getContenidoEstructuraDatos(Class&lt;T&gt; clazz) throws LectorArchivosDeDatosException {
+        Lector lector;
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (extension == Extension.CSV) {</span>
+<span class="fc" id="L74">            lector = new LectorCSV();</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        } else if (extension == Extension.JSON) {</span>
+<span class="fc" id="L76">            lector = new LectorJSON();</span>
+        } else {
+<span class="fc" id="L78">            lector = new LectorXML();</span>
+        }
+<span class="fc" id="L80">        lector.leer(rutaArchivo);</span>
+<span class="fc" id="L81">        return lector.getContenidoEstructuraDatos(clazz);</span>
+    }
+
+<span class="fc" id="L84">    public enum Extension {</span>
+<span class="fc" id="L85">        XML, JSON, CSV</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

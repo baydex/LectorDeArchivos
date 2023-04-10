@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LectorJSON.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LectorDeArchivos</a> &gt; <a href="index.source.html" class="el_package">com.baydot721.lectordearchivos</a> &gt; <span class="el_source">LectorJSON.java</span></div><h1>LectorJSON.java</h1><pre class="source lang-java linenums">package com.baydot721.lectordearchivos;
+
+import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
+
+public class LectorJSON extends Lector {
+
+    public LectorJSON() {
+<span class="fc" id="L10">        super();</span>
+
+<span class="fc" id="L12">    }</span>
+
+    @Override
+    public &lt;T&gt; List&lt;T&gt; getContenidoEstructuraDatos(Class&lt;T&gt; estructuraDeDatos) throws LectorArchivosDeDatosException{
+<span class="fc" id="L16">        Gson gson = new Gson();</span>
+<span class="fc" id="L17">        List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L18">        result.add(gson.fromJson(contenidoEnString, estructuraDeDatos));</span>
+<span class="fc" id="L19">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

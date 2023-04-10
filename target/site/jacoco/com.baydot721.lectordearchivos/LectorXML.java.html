@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LectorXML.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LectorDeArchivos</a> &gt; <a href="index.source.html" class="el_package">com.baydot721.lectordearchivos</a> &gt; <span class="el_source">LectorXML.java</span></div><h1>LectorXML.java</h1><pre class="source lang-java linenums">package com.baydot721.lectordearchivos;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.List;
+
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Ale
+ */
+public class LectorXML extends Lector{
+
+    public LectorXML() {
+<span class="fc" id="L17">        super();</span>
+<span class="fc" id="L18">    }</span>
+
+    @Override
+    public &lt;T&gt; List&lt;T&gt; getContenidoEstructuraDatos(Class&lt;T&gt; clazz) throws LectorArchivosDeDatosException {
+<span class="fc" id="L22">        XmlMapper xmlMapper = new XmlMapper();</span>
+        try {
+<span class="fc" id="L24">            return xmlMapper.readValue(contenidoEnString, xmlMapper.getTypeFactory().constructCollectionType(List.class, clazz));</span>
+<span class="fc" id="L25">        } catch (JsonProcessingException ex) {</span>
+<span class="fc" id="L26">            Logger.getLogger(LectorXML.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="fc" id="L27">            throw new LectorArchivosDeDatosException(LectorArchivosDeDatosException.ErrorCode.FORMATO_DE_CONTENIDO_INCORRECTO);</span>
+        }
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
