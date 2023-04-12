@@ -62,6 +62,6 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.baydot721.lectordearchivos.LectorTextoTest" name="testLeerArchivoValido" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorTextoTest" name="testLeerArchivoNoValido" time="0.003"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorTextoTest" name="testLeerArchivoValido" time="0.003"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorTextoTest" name="testLeerArchivoNoValido" time="0"/>
 </testsuite>

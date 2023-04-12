@@ -6,6 +6,7 @@ public class LectorArchivosDeDatosException extends Exception {
         EXTENSION_NO_VALIDA("La extensión del archivo no está dentro de los tipos permitidos"),
         EXTENSION_NO_ENCONTRADA("Debes ingresar un archivo con una extensión"),
         ARCHIVO_NO_ENCONTRADO("El archivo no ha podido ser encontrado"),
+        NO_SE_HA_PROPORCIONADO_ARCHIVO("El archivo no ha sido proporcionado para leer su contenido"),
         ERROR_AL_LEER_ARCHIVO("Ocurrio un error al leer el archivo"),
         RUTA_ARCHIVO_NULA_VACIA("La ruta del archivo no puede ser nula o estar vacía"),
         FORMATO_DE_CONTENIDO_INCORRECTO("El formato del archivo no es compatible con la estructura de datos"),

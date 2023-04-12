@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package com.baydot721.lectordearchivos;
+
 import com.baydot721.lectordearchivos.LectorArchivosDeDatos.Extension;
+import com.baydot721.lectordearchivos.LectorArchivosDeDatosException.ErrorCode;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -96,7 +98,7 @@ public class LectorArchivosDeDatosTest {
         }
         assertEquals(expcted, actual);
     }
-    
+
     @Test
     public void testGetEstructuraDatosConArchivoXML() {
         String rutaArchivo = "resources/dataXML.xml";
@@ -112,7 +114,7 @@ public class LectorArchivosDeDatosTest {
             fail();
         }
     }
-    
+
     @Test
     public void testGetEstructuraDatosConArchivoJSON() {
         String rutaArchivo = "resources/dataJSON.json";
@@ -122,8 +124,7 @@ public class LectorArchivosDeDatosTest {
             expected.campo1 = "valor1";
             expected.campo2 = 123;
             expected.campo3 = true;
-            
-            
+
             ObjetoDePrueba actual = lectorArchivosDeDatos.getContenidoEstructuraDatos(ObjetoDePrueba.class).get(0);
             assertTrue(actual instanceof ObjetoDePrueba);
             assertEquals(expected.campo1, actual.campo1);
@@ -133,7 +134,7 @@ public class LectorArchivosDeDatosTest {
             fail();
         }
     }
-    
+
     @Test
     public void testGetContenidoEstructuraDatosValidaCSV() {
         String rutaArchivo = "resources/dataCSV.csv";
@@ -149,6 +150,79 @@ public class LectorArchivosDeDatosTest {
             fail();
         } catch (Exception ex) {
             fail();
+        }
+    }
+
+    @Test
+    public void testGetStringConArchivoJSON() {
+        try {
+            lectorArchivosDeDatos.setRutaArchivo("resources/dataJSON.json");
+            String expected = "{\n"
+                    + "    \"campo1\": \"valor1\",\n"
+                    + "    \"campo2\": 123,\n"
+                    + "    \"campo3\": true\n"
+                    + "}";
+            String actual = lectorArchivosDeDatos.getContenidoString();
+            assertEquals(expected, actual);
+        } catch (LectorArchivosDeDatosException ex) {
+            fail();
+        }
+    }
+    
+    @Test
+    public void testGetStringConArchivoXML() {
+        try {
+            lectorArchivosDeDatos.setRutaArchivo("resources/dataXML.xml");
+            String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                    + "<personas>\n"
+                    + "  <persona>\n"
+                    + "    <nombre>John</nombre>\n"
+                    + "    <apellido>Doe</apellido>\n"
+                    + "    <edad>30</edad>\n"
+                    + "  </persona>\n"
+                    + "  <persona>\n"
+                    + "    <nombre>Jane</nombre>\n"
+                    + "    <apellido>Dae</apellido>\n"
+                    + "    <edad>25</edad>\n"
+                    + "  </persona>\n"
+                    + "  <persona>\n"
+                    + "    <nombre>Bob</nombre>\n"
+                    + "    <apellido>Smith</apellido>\n"
+                    + "    <edad>45</edad>\n"
+                    + "  </persona>\n"
+                    + "</personas>";
+            String actual = lectorArchivosDeDatos.getContenidoString();
+            assertEquals(expected, actual);
+        } catch (LectorArchivosDeDatosException ex) {
+            fail();
+        }
+    }
+    
+    @Test
+    public void testGetStringConArchivoCSV() {
+        try {
+            lectorArchivosDeDatos.setRutaArchivo("resources/dataJSON.json");
+            String expected = "{\n"
+                    + "    \"campo1\": \"valor1\",\n"
+                    + "    \"campo2\": 123,\n"
+                    + "    \"campo3\": true\n"
+                    + "}";
+            String actual = lectorArchivosDeDatos.getContenidoString();
+            assertEquals(expected, actual);
+        } catch (LectorArchivosDeDatosException ex) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testGetStringSinArchivo() {
+        try {
+            lectorArchivosDeDatos.getContenidoString();
+            fail();
+        } catch (LectorArchivosDeDatosException ex) {
+            ErrorCode expected = ErrorCode.NO_SE_HA_PROPORCIONADO_ARCHIVO;
+            ErrorCode actual = ex.getErrorCode();
+            assertEquals(expected, actual);
         }
     }
 }

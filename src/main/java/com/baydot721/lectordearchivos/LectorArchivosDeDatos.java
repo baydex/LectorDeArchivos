@@ -8,6 +8,7 @@ public class LectorArchivosDeDatos {
 
     private String rutaArchivo = "";
     private Extension extension;
+    Lector lector = null;
 
     public LectorArchivosDeDatos() {
     }
@@ -44,12 +45,15 @@ public class LectorArchivosDeDatos {
         switch (extensionEncontradaMinusculas) {
             case "json":
                 extension = Extension.JSON;
+                lector = new LectorJSON();
                 break;
             case "csv":
                 extension = Extension.CSV;
+                lector = new LectorCSV();
                 break;
             case "xml":
                 extension = Extension.XML;
+                lector = new LectorXML();
                 break;
             default:
                 throw new LectorArchivosDeDatosException(ErrorCode.EXTENSION_NO_VALIDA);
@@ -69,16 +73,21 @@ public class LectorArchivosDeDatos {
     }
 
     public <T> List<T> getContenidoEstructuraDatos(Class<T> clazz) throws LectorArchivosDeDatosException {
-        Lector lector;
-        if (extension == Extension.CSV) {
-            lector = new LectorCSV();
-        } else if (extension == Extension.JSON) {
-            lector = new LectorJSON();
-        } else {
-            lector = new LectorXML();
-        }
+        validarLectorInicializado();
         lector.leer(rutaArchivo);
         return lector.getContenidoEstructuraDatos(clazz);
+    }
+    
+    public String getContenidoString() throws LectorArchivosDeDatosException {
+        validarLectorInicializado();
+        lector.leer(rutaArchivo);
+        return lector.getContenidoEnString();
+    }
+    
+    private void validarLectorInicializado() throws LectorArchivosDeDatosException{
+        if(lector == null){
+            throw new LectorArchivosDeDatosException(ErrorCode.NO_SE_HA_PROPORCIONADO_ARCHIVO);
+        }
     }
 
     public enum Extension {
