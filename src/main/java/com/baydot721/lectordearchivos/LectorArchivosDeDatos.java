@@ -1,7 +1,6 @@
 package com.baydot721.lectordearchivos;
 
 import com.baydot721.lectordearchivos.LectorArchivosDeDatosException.ErrorCode;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LectorArchivosDeDatos {

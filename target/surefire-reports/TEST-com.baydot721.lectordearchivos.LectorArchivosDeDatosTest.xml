@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="13" failures="0" name="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" time="1.648" errors="0" skipped="0">
+<testsuite tests="13" failures="0" name="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" time="1.844" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="19.0.2+7-44"/>
@@ -62,17 +62,17 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetContenidoEstructuraDatosValidaCSV" time="0.113"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testSinHaberDadoRutaArchivo" time="0.001"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testReadConDatosCorrectos" time="0.003"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaCSV" time="0.001"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaXML" time="0.014"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringSinArchivo" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetEstructuraDatosConArchivoJSON" time="0.265"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringConArchivoCSV" time="0.001"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringConArchivoXML" time="0.001"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetContenidoEstructuraDatosValidaCSV" time="0.097"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testSinHaberDadoRutaArchivo" time="0.005"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testReadConDatosCorrectos" time="0"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaCSV" time="0"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaXML" time="0.013"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringSinArchivo" time="0.002"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetEstructuraDatosConArchivoJSON" time="0.663"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringConArchivoCSV" time="0"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringConArchivoXML" time="0"/>
   <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaCSVMayusculas" time="0"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringConArchivoJSON" time="0.001"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaJSON" time="0.001"/>
-  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetEstructuraDatosConArchivoXML" time="1.247"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetStringConArchivoJSON" time="0"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testExtensionValidaJSON" time="0"/>
+  <testcase classname="com.baydot721.lectordearchivos.LectorArchivosDeDatosTest" name="testGetEstructuraDatosConArchivoXML" time="1.064"/>
 </testsuite>

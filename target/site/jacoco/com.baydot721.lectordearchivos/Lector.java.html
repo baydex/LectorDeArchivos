@@ -4,16 +4,7 @@
  */
 package com.baydot721.lectordearchivos;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
-import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,23 +13,23 @@ import java.util.logging.Logger;
 public abstract class Lector {
     public String contenidoEnString;
 
-<span class="fc" id="L25">    public Lector() {</span>
-<span class="fc" id="L26">        contenidoEnString = &quot;&quot;;</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L16">    public Lector() {</span>
+<span class="fc" id="L17">        contenidoEnString = &quot;&quot;;</span>
+<span class="fc" id="L18">    }</span>
     
     public void leer(String rutaArchivo) throws LectorArchivosDeDatosException {
-<span class="fc" id="L30">        LectorTexto lectorTexto = new LectorTexto();</span>
-<span class="fc" id="L31">        setContenidoString(lectorTexto.leer(rutaArchivo));</span>
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L21">        LectorTexto lectorTexto = new LectorTexto();</span>
+<span class="fc" id="L22">        setContenidoString(lectorTexto.leer(rutaArchivo));</span>
+<span class="fc" id="L23">    }</span>
     
     private void setContenidoString(String nuevoContenido){
-<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if(nuevoContenido != null){</span>
-<span class="fc" id="L36">            contenidoEnString = nuevoContenido;</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if(nuevoContenido != null){</span>
+<span class="fc" id="L27">            contenidoEnString = nuevoContenido;</span>
         }
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L29">    }</span>
     
     public String getContenidoEnString() {
-<span class="fc" id="L41">        return contenidoEnString;</span>
+<span class="fc" id="L32">        return contenidoEnString;</span>
     }
 
     public abstract &lt;T&gt; List&lt;T&gt; getContenidoEstructuraDatos(Class&lt;T&gt; clazz) throws LectorArchivosDeDatosException;
